@@ -1,5 +1,4 @@
 # Noelker_etal_XenopusBdAcclimation
-# Noelker_etal_XenopusBdAcclimation
 This study investigates the effects of acclimation and performance temperatures on _Xenopus laevis_ Bd infections from skin swabs and filters measuring zoospore production.
 
 **TITLE:** _Dynamic effects of thermal acclimation on chytridiomycosis infection intensity and transmission potential in Xenopus laevis_
