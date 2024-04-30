@@ -15,7 +15,7 @@ Thomas R. Raffel (Principle investigator)
 
 ===========================================================================
 
-**File 1:** _2021.IndInf & 2022.IndInf ALL TEMP DATA - 04.12.2023 edits.csv_
+**File 1:** _Experiment1&2.TemperatureData.csv_
 
 CSV of temperature data from Experiment 1 & 2 comparing target temperatures with data collected using HOBO temperature loggers in each incubator.
 
@@ -30,7 +30,7 @@ CSV of temperature data from Experiment 1 & 2 comparing target temperatures with
 
 ===========================================================================
 
-**File 2:** _2021.IndInf & 2022.IndInf Combined Data - 11.15.2023 edits.csv_
+**File 2:** _Experiment1&2CombinedBdInfectionData.csv_
 
 CSV of Bd infection data collected from skin swabs for Experiments 1 & 2 collected weekly and filters for Experiment 2 collected on day 7 and 35. Each row is a data collection day for each frog as well as the conditions the frog was experiencing.
 
@@ -58,7 +58,7 @@ CSV of Bd infection data collected from skin swabs for Experiments 1 & 2 collect
 
 ===========================================================================
 
-**File 3:** _2021.IndInf & 2022.IndInf Combined Masses - 11.28.2023 edits.csv_
+**File 3:** _Experiment1&2CombinedMassData.csv_
 
 CSV of mass data for all frogs for Experiments 1 & 2.
 
