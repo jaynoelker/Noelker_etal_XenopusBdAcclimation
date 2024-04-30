@@ -11,10 +11,10 @@ IndBd2022<-subset(BdData,Experiment=="2022.IndInf")
 #fix(IndBd2022)
 
 
-##########################################
-##### Explore visuals - 01.23.2022 JEN ####
+###########################################
+#####          Explore visuals         ####
 ##### 2021 & 22 Temp. Effect Statistics ###
-##########################################
+###########################################
 
 BdTemp<-subset(BdData,DayOfExpo=="0")
 #fix(BdTemp)
@@ -163,7 +163,7 @@ Days2022counts<-tapply(Days2022$LnSwabBd, list(Days2022$Day, Days2022$PerfTemp),
 Days2022SEs<-Days2022SDevs/sqrt(Days2022counts)
 
 ###############################################
-##### Overall Temp-effects - 12.23.2022 JEN ###
+#####      Overall Temp-effects             ###
 ##### 2021 & 22 Temp. Effect modesls ##########
 ###############################################
 # 
