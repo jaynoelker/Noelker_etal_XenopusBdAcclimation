@@ -2,7 +2,7 @@ library(Hmisc)
 library(car)
 library(lme4)
 
-BdData<-read.csv(file.choose(), header=TRUE) #Open file "2021.2021 & 2022.2022 Combined Data - 01.23.2022 edits"
+BdData<-read.csv(file.choose(), header=TRUE) #Open file "Experiment1&2CombinedBdInfectionData.csv"
 head(BdData)
 
 IndBd2021<-subset(BdData,Experiment=="2021.IndInf")
@@ -1450,7 +1450,7 @@ Anova(FilterRateDay7,test="F")
 #Temperature data summary graph
 
 ### Start with 2021.IndInf
-TempData<-read.csv(file.choose(),header=TRUE)
+TempData<-read.csv(file.choose(),header=TRUE) # File name: "Experiment1&2TemperatureData.csv"
 
 names(TempData)
 
@@ -1532,7 +1532,7 @@ mtext(paste("Actual temperature (°C)"),side=2,line=2,cex=1.5,outer=TRUE)
 ######################
 library(clipr)
 
-massData<-read.csv(file.choose()) #File name "2021.IndInf & 2022.IndInf Combined Masses - 11.28.2023 edits"
+massData<-read.csv(file.choose()) #File name "Experiment1&2CombinedMassData.csv"
 
 names(massData)
 
