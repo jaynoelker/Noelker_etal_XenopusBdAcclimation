@@ -15,7 +15,7 @@ Thomas R. Raffel (Principle investigator)
 
 ===========================================================================
 
-**File 1:** _Experiment1&2.TemperatureData.csv_
+**File 1:** _Experiment1&2TemperatureData.csv_
 
 CSV of temperature data from Experiment 1 & 2 comparing target temperatures with data collected using HOBO temperature loggers in each incubator.
 
