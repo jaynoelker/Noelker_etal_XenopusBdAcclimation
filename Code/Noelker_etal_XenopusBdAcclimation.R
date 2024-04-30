@@ -2,7 +2,7 @@ library(Hmisc)
 library(car)
 library(lme4)
 
-BdData<-read.csv(file.choose(), header=TRUE) #Open file "2021.2021 & 2022.2022 Combined Data - 01.23.2022 edits"
+BdData<-read.csv(file.choose(), header=TRUE) #Open file "Experiment1&2CombinedBdInfectionData.csv"
 head(BdData)
 
 IndBd2021<-subset(BdData,Experiment=="2021.IndInf")
@@ -137,7 +137,7 @@ plots<-{
   
   #par(mfrow=c(2,3))
   #par(mar=c(4,5,1,1))
-  plot(x=c(10,15,20,25),y=a10d0pc,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="Ln Bd load +1", main="Day 35 Infection Curve")
+  plot(x=c(10,15,20,25),y=a10d0pc,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="Ln Bd load +1", main="Day 35 Infection Curve")
   errbar(x=c(10,15,20,25),y=a10d0pc,yplus=a10d0pc+se10d0pc,yminus=a10d0pc-se10d0pc,col=col[1],errbar.col=col[1],pch=15,add=TRUE)
   lines(x=c(10,15,20,25),y=a10d0pc,col=col[1])
   errbar(x=c(10,15,20,25),y=a20d0pc,yplus=a20d0pc+se20d0pc,yminus=a20d0pc-se20d0pc,col=col[3],errbar.col=col[3],pch=16,add=TRUE)
@@ -737,7 +737,7 @@ a10d0pcBd21<-d0Bd21means[3,1:4,1]
 a20d0pcBd21<-d0Bd21means[3,1:4,2]
 se10d0pcBd21<-d0Bd21SEs[3,1:4,1]
 se20d0pcBd21<-d0Bd21SEs[3,1:4,2]
-plot(x=c(perfTemp.df[1,1:4]),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#,main="Bd 2021")
+plot(x=c(perfTemp.df[1,1:4]),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#,main="Bd 2021")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,yplus=a10d0pcBd21+se10d0pcBd21,yminus=a10d0pcBd21-se10d0pcBd21,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a20d0pcBd21,yplus=a20d0pcBd21+se20d0pcBd21,yminus=a20d0pcBd21-se20d0pcBd21,col=col[3],errbar.col=col[3],pch=1,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -754,7 +754,7 @@ a20d0pcBd22<-d0Bd22means[4,1:4,3]
 se10d0pcBd22<-d0Bd22SEs[4,1:4,1]
 se15d0pcBd22<-d0Bd22SEs[4,1:4,2]
 se20d0pcBd22<-d0Bd22SEs[4,1:4,3]
-plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#,main="Bd 2022")
+plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#,main="Bd 2022")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,yplus=a10d0pcBd22+se10d0pcBd22,yminus=a10d0pcBd22-se10d0pcBd22,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a15d0pcBd22,yplus=a15d0pcBd22+se15d0pcBd22,yminus=a15d0pcBd22-se15d0pcBd22,col=col[2],errbar.col=col[2],pch=2,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -772,7 +772,7 @@ a10d0pcBd21<-d0Bd21means[4,1:4,1]
 a20d0pcBd21<-d0Bd21means[4,1:4,2]
 se10d0pcBd21<-d0Bd21SEs[4,1:4,1]
 se20d0pcBd21<-d0Bd21SEs[4,1:4,2]
-plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 14 Infection Curve")
+plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 14 Infection Curve")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,yplus=a10d0pcBd21+se10d0pcBd21,yminus=a10d0pcBd21-se10d0pcBd21,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a20d0pcBd21,yplus=a20d0pcBd21+se20d0pcBd21,yminus=a20d0pcBd21-se20d0pcBd21,col=col[3],errbar.col=col[3],pch=1,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -788,7 +788,7 @@ a20d0pcBd22<-d0Bd22means[5,1:4,3]
 se10d0pcBd22<-d0Bd22SEs[5,1:4,1]
 se15d0pcBd22<-d0Bd22SEs[5,1:4,2]
 se20d0pcBd22<-d0Bd22SEs[5,1:4,3]
-plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 14 Infection Curve")
+plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 14 Infection Curve")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,yplus=a10d0pcBd22+se10d0pcBd22,yminus=a10d0pcBd22-se10d0pcBd22,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a15d0pcBd22,yplus=a15d0pcBd22+se15d0pcBd22,yminus=a15d0pcBd22-se15d0pcBd22,col=col[2],errbar.col=col[2],pch=2,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -805,7 +805,7 @@ a10d0pcBd21<-d0Bd21means[5,1:4,1]
 a20d0pcBd21<-d0Bd21means[5,1:4,2]
 se10d0pcBd21<-d0Bd21SEs[5,1:4,1]
 se20d0pcBd21<-d0Bd21SEs[5,1:4,2]
-plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 21 Infection Curve")
+plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 21 Infection Curve")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,yplus=a10d0pcBd21+se10d0pcBd21,yminus=a10d0pcBd21-se10d0pcBd21,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a20d0pcBd21,yplus=a20d0pcBd21+se20d0pcBd21,yminus=a20d0pcBd21-se20d0pcBd21,col=col[3],errbar.col=col[3],pch=1,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -821,7 +821,7 @@ a20d0pcBd22<-d0Bd22means[6,1:4,3]
 se10d0pcBd22<-d0Bd22SEs[6,1:4,1]
 se15d0pcBd22<-d0Bd22SEs[6,1:4,2]
 se20d0pcBd22<-d0Bd22SEs[6,1:4,3]
-plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 21 Infection Curve")
+plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 21 Infection Curve")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,yplus=a10d0pcBd22+se10d0pcBd22,yminus=a10d0pcBd22-se10d0pcBd22,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a15d0pcBd22,yplus=a15d0pcBd22+se15d0pcBd22,yminus=a15d0pcBd22-se15d0pcBd22,col=col[2],errbar.col=col[2],pch=2,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -838,7 +838,7 @@ a10d0pcBd21<-d0Bd21means[6,1:4,1]
 a20d0pcBd21<-d0Bd21means[6,1:4,2]
 se10d0pcBd21<-d0Bd21SEs[6,1:4,1]
 se20d0pcBd21<-d0Bd21SEs[6,1:4,2]
-plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 28 Infection Curve")
+plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 28 Infection Curve")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,yplus=a10d0pcBd21+se10d0pcBd21,yminus=a10d0pcBd21-se10d0pcBd21,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a20d0pcBd21,yplus=a20d0pcBd21+se20d0pcBd21,yminus=a20d0pcBd21-se20d0pcBd21,col=col[3],errbar.col=col[3],pch=1,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -854,7 +854,7 @@ a20d0pcBd22<-d0Bd22means[7,1:4,3]
 se10d0pcBd22<-d0Bd22SEs[7,1:4,1]
 se15d0pcBd22<-d0Bd22SEs[7,1:4,2]
 se20d0pcBd22<-d0Bd22SEs[7,1:4,3]
-plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 28 Infection Curve")
+plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5,xaxt='n')#, main="Day 28 Infection Curve")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,yplus=a10d0pcBd22+se10d0pcBd22,yminus=a10d0pcBd22-se10d0pcBd22,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a15d0pcBd22,yplus=a15d0pcBd22+se15d0pcBd22,yminus=a15d0pcBd22-se15d0pcBd22,col=col[2],errbar.col=col[2],pch=2,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -871,7 +871,7 @@ a10d0pcBd21<-d0Bd21means[7,1:4,1]
 a20d0pcBd21<-d0Bd21means[7,1:4,2]
 se10d0pcBd21<-d0Bd21SEs[7,1:4,1]
 se20d0pcBd21<-d0Bd21SEs[7,1:4,2]
-plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5)#, main="Day 35 Infection Curve")
+plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5)#, main="Day 35 Infection Curve")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,yplus=a10d0pcBd21+se10d0pcBd21,yminus=a10d0pcBd21-se10d0pcBd21,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd21,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a20d0pcBd21,yplus=a20d0pcBd21+se20d0pcBd21,yminus=a20d0pcBd21-se20d0pcBd21,col=col[3],errbar.col=col[3],pch=1,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -886,7 +886,7 @@ a20d0pcBd22<-d0Bd22means[8,1:4,3]
 se10d0pcBd22<-d0Bd22SEs[8,1:4,1]
 se15d0pcBd22<-d0Bd22SEs[8,1:4,2]
 se20d0pcBd22<-d0Bd22SEs[8,1:4,3]
-plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (캜)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5)#, main="Day 35 Infection Curve")
+plot(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col="white",xlim=c(10,25),ylim=c(0,7),xlab="Temperature (째C)",ylab="",cex.axis=1.5,cex.lab=1.5,cex.main=1.5)#, main="Day 35 Infection Curve")
 errbar(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,yplus=a10d0pcBd22+se10d0pcBd22,yminus=a10d0pcBd22-se10d0pcBd22,col=col[1],errbar.col=col[1],pch=0,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
 lines(x=c(as.numeric(perfTemp.df[1,1:4])),y=a10d0pcBd22,col=col[1],lwd=1.5,lty=1)
 errbar(x=c(as.numeric(perfTemp.df[2,1:4])),y=a15d0pcBd22,yplus=a15d0pcBd22+se15d0pcBd22,yminus=a15d0pcBd22-se15d0pcBd22,col=col[2],errbar.col=col[2],pch=2,cex=2,cex.lab=1.5,cex.main=1.5,add=TRUE)
@@ -897,7 +897,7 @@ mtext(LETTERS[10], side=3, adj=-0.15, line=0, cex=1)
 text(x=26.5,y=3.5,"Day 35",xpd=NA,srt=270,cex=1.5)
 
 mtext(expression(paste("Ln(Bd Z"["e"]*" + 1)",sep="")), side=2, line=-1,cex=1.5,outer=TRUE)
-mtext("Performance temperature (캜)",side=1,line=1,cex=1.5,outer=TRUE)
+mtext("Performance temperature (째C)",side=1,line=1,cex=1.5,outer=TRUE)
 
 ## Export at 800 x 1200
 
@@ -1193,7 +1193,7 @@ mtext(LETTERS[15], side=3, adj=-0.25, line=0, cex=1)
 text(x=21.5,y=3.5,"Day 35",xpd=NA,srt=270,cex=1.2)
 
 mtext(expression(paste("Ln(Bd Z"["e"]*" + 1)",sep="")),side=2,line=-1,cex=1.5,outer=TRUE)
-mtext(paste("Performance temperature (캜)"),side=1,line=1,cex=1.5,outer=TRUE)
+mtext(paste("Performance temperature (째C)"),side=1,line=1,cex=1.5,outer=TRUE)
 
 ## Export at 700 x 800
 
@@ -1304,7 +1304,7 @@ errbar(c(as.numeric(days.df[2,1]),as.numeric(days.df[2,5])), FilterRate[1:2, 2],
 errbar(c(as.numeric(days.df[3,1]),as.numeric(days.df[3,5])), FilterRate[1:2, 3], yminus=FilterRate[1:2, 3]-FilterRatese[1:2, 3], yplus=FilterRate[1:2, 3]+FilterRatese[1:2, 3],add=TRUE, errbar.col=col[3], col=col[3], pch=18,cex=1.5,cex.lab=1.5,cex.main=1.5)
 errbar(c(as.numeric(days.df[4,1]),as.numeric(days.df[4,5])), FilterRate[1:2, 4], yminus=FilterRate[1:2, 4]-FilterRatese[1:2, 4], yplus=FilterRate[1:2, 4]+FilterRatese[1:2, 4],add=TRUE, errbar.col=col[4], col=col[4], pch=15,cex=1.5,cex.lab=1.5,cex.main=1.5)
 mtext(expression(paste(bold("Experiment 2:"))),side=3,line=2,cex=1)
-#legend("topright",title="PerfTemp",legend=c("10 캜","15 캜","20 캜","25 캜"),col=col,pch=c(16,17,18,15),cex=1)
+#legend("topright",title="PerfTemp",legend=c("10 째C","15 째C","20 째C","25 째C"),col=col,pch=c(16,17,18,15),cex=1)
 mtext(LETTERS[3], side=3, adj=-0.15, line=0, cex=1)
 mtext(expression(paste("Ln(Bd Z"["e"]*" + 1)",sep="")),side=2,line=-1,cex=1.5,outer=TRUE)
 mtext(paste("Day of experiment"),side=1,line=1,cex=1.5,outer=TRUE)
@@ -1369,16 +1369,16 @@ lines(c(as.numeric(perfTemp.df[2,1:4])), FilterRate[1,1:4], col="black", lty=2,c
 axis(1,at=seq(from=10,to=25,by=5),labels=FALSE,tick=TRUE)
 mtext(LETTERS[1], side=3, adj=-0.15, line=0, cex=1)
 
-plot(c(as.numeric(perfTemp.df[1,1:4])), zooData2[1:4, 1], col="white", pch=16, xlab="", ylab="",# main="Zoospores/min. by Acclimation Temp. (캜 at Day 7)"
+plot(c(as.numeric(perfTemp.df[1,1:4])), zooData2[1:4, 1], col="white", pch=16, xlab="", ylab="",# main="Zoospores/min. by Acclimation Temp. (째C at Day 7)"
      ,xlim=c(9.8,25.2), ylim=c(0, 8),cex=1.5,cex.lab=1.5,cex.main=1.5)
 errbar(c(as.numeric(perfTemp.df[1,1:4])), zooData2[1:4, 1], yminus=zooData2[1:4, 1]-zooData2se[1:4, 1], yplus=zooData2[1:4, 1]+zooData2se[1:4, 1], add=TRUE,errbar.col=col[1], col=col[1], pch=0,cex=1.5,cex.lab=1.5,cex.main=1.5)
 errbar(c(as.numeric(perfTemp.df[2,1:4])), zooData2[1:4, 2], yminus=zooData2[1:4, 2]-zooData2se[1:4, 2], yplus=zooData2[1:4, 2]+zooData2se[1:4, 2], add=TRUE,errbar.col=col[2], col=col[2], pch=2,cex=1.5,cex.lab=1.5,cex.main=1.5)
 errbar(c(as.numeric(perfTemp.df[3,1:4])), zooData2[1:4, 3], yminus=zooData2[1:4, 3]-zooData2se[1:4, 3], yplus=zooData2[1:4, 3]+zooData2se[1:4, 3], add=TRUE,errbar.col=col[3], col=col[3], pch=1,cex=1.5,cex.lab=1.5,cex.main=1.5)
-#legend("topright", legend=c("10 � C", "15 � C", "20 � C"), col=col, pch=c(0,2,1), title="Acclimation temperature")
+#legend("topright", legend=c("10 째 C", "15 째 C", "20 째 C"), col=col, pch=c(0,2,1), title="Acclimation temperature")
 mtext(LETTERS[2], side=3, adj=-0.15, line=0, cex=1)
 
 mtext(expression(paste("Ln(Bd Z"["e"]*" + 1)",sep="")),side=2,line=1,cex=1.5,outer=TRUE)
-mtext(paste("Performance temperature (캜)"),side=1,line=1,cex=1.5,outer=TRUE)
+mtext(paste("Performance temperature (째C)"),side=1,line=1,cex=1.5,outer=TRUE)
 
 # Export as 450 x 775
 
@@ -1450,7 +1450,7 @@ Anova(FilterRateDay7,test="F")
 #Temperature data summary graph
 
 ### Start with 2021.IndInf
-TempData<-read.csv(file.choose(),header=TRUE)
+TempData<-read.csv(file.choose(),header=TRUE) # File name: "Experiment1&2TemperatureData.csv"
 
 names(TempData)
 
@@ -1480,12 +1480,12 @@ SD20C<-tapply(twentyC$AvgTempC,twentyC$Treatment,sd)
 SD25C<-tapply(twentyfiveC$AvgTempC,twentyfiveC$Treatment,sd)
 
 par(mfrow=c(1,2),mar=c(2,2,2,1),oma=c(4,4,1,1))
-plot(treat10C,mn10Temp,col="white",ylim=c(7,28),xlim=c(7,28),main="Experiment 1",xlab="Target Temperature (캜)",ylab="Actual Temperature (캜)")
+plot(treat10C,mn10Temp,col="white",ylim=c(7,28),xlim=c(7,28),main="Experiment 1",xlab="Target Temperature (째C)",ylab="Actual Temperature (째C)")
 errbar(treat10C,mn10Temp,yplus=mn10Temp+SD10C,yminus=mn10Temp-SD10C,col=col[1],errbar.col=col[1],pch=15,cex=1.2,add=TRUE)
 errbar(treat15C,mn15Temp,yplus=mn15Temp+SD15C,yminus=mn15Temp-SD15C,col=col[2],errbar.col=col[2],pch=17,cex=1.2,add=TRUE)
 errbar(treat20C,mn20Temp,yplus=mn20Temp+SD20C,yminus=mn20Temp-SD20C,col=col[3],errbar.col=col[3],pch=16,cex=1.2,add=TRUE)
 errbar(treat25C,mn25Temp,yplus=mn25Temp+SD25C,yminus=mn25Temp-SD25C,col=col[4],errbar.col=col[4],pch=18,cex=1.2,add=TRUE)
-#legend("topleft",inset=.05,c("25 캜","20 캜","15 캜","10 캜"),cex=1,col=c(col[4],col[3],col[2],col[1]),pch=c(18,16,17,15))
+#legend("topleft",inset=.05,c("25 째C","20 째C","15 째C","10 째C"),cex=1,col=c(col[4],col[3],col[2],col[1]),pch=c(18,16,17,15))
 mtext(LETTERS[1], side=3, adj=-0.15, line=0, cex=1)
 
 ### Do it again for 2022.IndInf
@@ -1514,16 +1514,16 @@ SD15C<-tapply(fifteenC$AvgTempC,fifteenC$Treatment,sd)
 SD20C<-tapply(twentyC$AvgTempC,twentyC$Treatment,sd)
 SD25C<-tapply(twentyfiveC$AvgTempC,twentyfiveC$Treatment,sd)
 
-plot(treat10C,mn10Temp,col="white",ylim=c(7,28),xlim=c(7,28),main="Experiment 2",xlab="Target temperature (캜)",ylab="Actual temperature (캜)",yaxt='n')
+plot(treat10C,mn10Temp,col="white",ylim=c(7,28),xlim=c(7,28),main="Experiment 2",xlab="Target temperature (째C)",ylab="Actual temperature (째C)",yaxt='n')
 errbar(treat10C,mn10Temp,yplus=mn10Temp+SD10C,yminus=mn10Temp-SD10C,col=col[1],errbar.col=col[1],pch=15,cex=1.2,add=TRUE)
 errbar(treat15C,mn15Temp,yplus=mn15Temp+SD15C,yminus=mn15Temp-SD15C,col=col[2],errbar.col=col[2],pch=17,cex=1.2,add=TRUE)
 errbar(treat20C,mn20Temp,yplus=mn20Temp+SD20C,yminus=mn20Temp-SD20C,col=col[3],errbar.col=col[3],pch=16,cex=1.2,add=TRUE)
 errbar(treat25C,mn25Temp,yplus=mn25Temp+SD25C,yminus=mn25Temp-SD25C,col=col[4],errbar.col=col[4],pch=18,cex=1.2,add=TRUE)
-#legend("topleft",inset=.05,c("25 캜","20 캜","15 캜","10 캜"),cex=1,col=c(col[4],col[3],col[2],col[1]),pch=c(18,16,17,15))
+#legend("topleft",inset=.05,c("25 째C","20 째C","15 째C","10 째C"),cex=1,col=c(col[4],col[3],col[2],col[1]),pch=c(18,16,17,15))
 axis(2,at=seq(from=10,to=25,by=5),labels=FALSE,tick=TRUE)
 mtext(LETTERS[2], side=3, adj=-0.15, line=0, cex=1)
-mtext(paste("Target temperature (캜)"),side=1,line=2,cex=1.5,outer=TRUE)
-mtext(paste("Actual temperature (캜)"),side=2,line=2,cex=1.5,outer=TRUE)
+mtext(paste("Target temperature (째C)"),side=1,line=2,cex=1.5,outer=TRUE)
+mtext(paste("Actual temperature (째C)"),side=2,line=2,cex=1.5,outer=TRUE)
 
 ### Export as 800 x 450
 
@@ -1532,7 +1532,7 @@ mtext(paste("Actual temperature (캜)"),side=2,line=2,cex=1.5,outer=TRUE)
 ######################
 library(clipr)
 
-massData<-read.csv(file.choose()) #File name "2021.IndInf & 2022.IndInf Combined Masses - 11.28.2023 edits"
+massData<-read.csv(file.choose()) #File name "Experiment1&2CombinedMassData.csv"
 
 names(massData)
 
