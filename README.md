@@ -45,7 +45,7 @@ CSV of Bd infection data collected from skin swabs for Experiments 1 & 2 collect
 | **Date** | actual date a swab or filter sample was collected |
 | **Day** | day of the experiment relative to the temperature shift |
 | **DayOfExpo** | each frog's day of exposure to Bd zoospores relative to the temperature shift |
-| **DaysSinceExpo** | number of days since exposure for a frog for a swab or filter sample |
+| **TimeSinceExposure** | number of days since exposure for a frog for a swab or filter sample |
 | **AccTemp** | a frog's assigned acclimation temperature |
 | **PerfTemp** | a frog's assigned performance temperature |
 | **AccInc** | a frog's assigned acclimation incubator |
