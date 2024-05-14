@@ -10,7 +10,6 @@ IndBd2022<-subset(BdData,Experiment=="2022.IndInf")
 #fix(IndBd2021)
 #fix(IndBd2022)
 
-
 ###########################################
 #####          Explore visuals         ####
 ##### 2021 & 22 Temp. Effect Statistics ###
@@ -62,7 +61,7 @@ d0sdevs<-tapply(BdTemp$LnSwabBd, list(BdTemp$Day, BdTemp$PerfTemp, BdTemp$AccTem
 d0counts<-tapply(BdTemp$LnSwabBd, list(BdTemp$Day, BdTemp$PerfTemp, BdTemp$AccTemp), length)
 d0SEs<-d0sdevs/sqrt(d0counts)
 
-#sort(unique(BdTemp$DaysSinceExpo))
+#sort(unique(BdTemp$TimeSinceExposure))
 
 #names these then plot refering to statistics from tapply
 #1=day,2=perftemp,3=acctemp
@@ -167,23 +166,23 @@ Days2022SEs<-Days2022SDevs/sqrt(Days2022counts)
 ##### 2021 & 22 Temp. Effect modesls ##########
 ###############################################
 # 
-# TempModel1.0<-lmer(LnSwabBd~AccTemp*PerfTemp*Experiment+(1|AccInc),data=subset(BdTemp,DaysSinceExpo=="7"))
+# TempModel1.0<-lmer(LnSwabBd~AccTemp*PerfTemp*Experiment+(1|AccInc),data=subset(BdTemp,TimeSinceExposure=="7"))
 # #Double check number of frogs per PerfInc; looks like only one frog per Timing treatment
 # summary(TempModel1.0)
 # Anova(TempModel1.0,test="F")
 # 
 # #Look at 2021.IndBd2021 first.
-# TempModel1.1<-lm(LnSwabBd~AccTemp*PerfTemp,data=subset(IndBd2021,DaysSinceExpo=="7" & DayOfExpo==0))
+# TempModel1.1<-lm(LnSwabBd~AccTemp*PerfTemp,data=subset(IndBd2021,TimeSinceExposure=="7" & DayOfExpo==0))
 # summary(TempModel1.1)
 # Anova(TempModel1.1,test="F")
 # 
 # #Look at 2022.IndBd2022 second.
-# TempModel1.2<-lm(LnSwabBd~AccTemp*PerfTemp,data=subset(IndBd2022,DaysSinceExpo=="7" & DayOfExpo==0))
+# TempModel1.2<-lm(LnSwabBd~AccTemp*PerfTemp,data=subset(IndBd2022,TimeSinceExposure=="7" & DayOfExpo==0))
 # summary(TempModel1.2)
 # Anova(TempModel1.2,test="F")
 # 
 # #
-# TempModel1.3<-lmer(LnSwabBd~AccTemp*PerfTemp+DaysSinceExpo+Experiment+(1|FrogID),data=subset(BdTemp,DaysSinceExpo>3)) 
+# TempModel1.3<-lmer(LnSwabBd~AccTemp*PerfTemp+TimeSinceExposure+Experiment+(1|FrogID),data=subset(BdTemp,TimeSinceExposure>3)) 
 # summary(TempModel1.3)
 # Anova(TempModel1.3,test="F")
 
@@ -193,55 +192,55 @@ Days2022SEs<-Days2022SDevs/sqrt(Days2022counts)
 
 #Models to investigate Acclimation effects through time and directionality.
 ### IndBd2021 Full model
-TempModel1.4<-lmer(LnSwabBd~AccTemp*PerfTemp*DaysSinceExpo+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo>=0 & DayOfExpo==0)) 
+TempModel1.4<-lmer(LnSwabBd~AccTemp*PerfTemp*TimeSinceExposure+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.4)
 Anova(TempModel1.4,test="F")
 #View(Anova(TempModel1.4,test="F")) #View() gives table
 
 # 2-way interactions coefficients
-TempModel1.4<-lmer(LnSwabBd~AccTemp + PerfTemp + DaysSinceExpo + AccTemp*PerfTemp + PerfTemp*DaysSinceExpo + AccTemp*DaysSinceExpo+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo>=0 & DayOfExpo==0)) 
+TempModel1.4<-lmer(LnSwabBd~AccTemp + PerfTemp + TimeSinceExposure + AccTemp*PerfTemp + PerfTemp*TimeSinceExposure + AccTemp*TimeSinceExposure+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.4)
 
 # PerfTemp coefficient
-TempModel1.4<-lmer(LnSwabBd~AccTemp + PerfTemp + DaysSinceExpo + AccTemp*DaysSinceExpo+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo>=0 & DayOfExpo==0)) 
+TempModel1.4<-lmer(LnSwabBd~AccTemp + PerfTemp + TimeSinceExposure + AccTemp*TimeSinceExposure+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.4)
 
 # AccTemp coefficient
-TempModel1.4<-lmer(LnSwabBd~AccTemp + PerfTemp + DaysSinceExpo + PerfTemp*DaysSinceExpo+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo>=0 & DayOfExpo==0)) 
+TempModel1.4<-lmer(LnSwabBd~AccTemp + PerfTemp + TimeSinceExposure + PerfTemp*TimeSinceExposure+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.4)
 
-# DaysSinceExpo coefficient
-TempModel1.4<-lmer(LnSwabBd~AccTemp + PerfTemp + DaysSinceExpo + AccTemp*PerfTemp+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo>=0 & DayOfExpo==0)) 
+# TimeSinceExposure coefficient
+TempModel1.4<-lmer(LnSwabBd~AccTemp + PerfTemp + TimeSinceExposure + AccTemp*PerfTemp+(1|PerfInc/FrogID)+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.4)
 
-# TempModel1.5<-lmer(LnSwabBd~AccTemp*PerfTemp+DaysSinceExpo+(1|FrogID),data=subset(IndBd2021,DaysSinceExpo>=0 & DayOfExpo==0)) 
+# TempModel1.5<-lmer(LnSwabBd~AccTemp*PerfTemp+TimeSinceExposure+(1|FrogID),data=subset(IndBd2021,TimeSinceExposure>=0 & DayOfExpo==0)) 
 # summary(TempModel1.5)$coefficients #Gets us slope of Time effect without Time interactions (avoid marginality problem)
 # #View(summary(TempModel1.5)$coefficients) #View() gives table
 # 
-# TempModel1.6<-lmer(LnSwabBd~AccTemp*PerfTemp+PerfTemp*DaysSinceExpo+AccTemp*DaysSinceExpo+(1|FrogID),data=subset(IndBd2021,DaysSinceExpo>=0 & DayOfExpo==0)) 
+# TempModel1.6<-lmer(LnSwabBd~AccTemp*PerfTemp+PerfTemp*TimeSinceExposure+AccTemp*TimeSinceExposure+(1|FrogID),data=subset(IndBd2021,TimeSinceExposure>=0 & DayOfExpo==0)) 
 # summary(TempModel1.6)$coefficients #Coef of AccTemp:Days is negative. AccTemp effect decreased over time.
 # #View(summary(TempModel1.6)$coefficients) #View() gives table
 
 ### IndBd2022 Full model
-TempModel1.7<-lmer(LnSwabBd~AccTemp*PerfTemp*DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,DaysSinceExpo>=0 & DayOfExpo==0)) 
+TempModel1.7<-lmer(LnSwabBd~AccTemp*PerfTemp*TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.7)
 Anova(TempModel1.7,test="F")
 #View(Anova(TempModel1.7,test="F")) #View() gives table
 
 # 2-way interactions coefficients
-TempModel1.7<-lmer(LnSwabBd~AccTemp + PerfTemp + DaysSinceExpo + AccTemp*PerfTemp + PerfTemp*DaysSinceExpo + AccTemp*DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,DaysSinceExpo>=0 & DayOfExpo==0)) 
+TempModel1.7<-lmer(LnSwabBd~AccTemp + PerfTemp + TimeSinceExposure + AccTemp*PerfTemp + PerfTemp*TimeSinceExposure + AccTemp*TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.7)
 
 # PerfTemp coefficient
-TempModel1.7<-lmer(LnSwabBd~AccTemp + PerfTemp + DaysSinceExpo + AccTemp*DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,DaysSinceExpo>=0 & DayOfExpo==0)) 
+TempModel1.7<-lmer(LnSwabBd~AccTemp + PerfTemp + TimeSinceExposure + AccTemp*TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.7)
 
 # AccTemp coefficient
-TempModel1.7<-lmer(LnSwabBd~AccTemp + PerfTemp + DaysSinceExpo + PerfTemp*DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,DaysSinceExpo>=0 & DayOfExpo==0)) 
+TempModel1.7<-lmer(LnSwabBd~AccTemp + PerfTemp + TimeSinceExposure + PerfTemp*TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.7)
 
-# DaysSinceExpo coefficient
-TempModel1.7<-lmer(LnSwabBd~AccTemp + PerfTemp + DaysSinceExpo + AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,DaysSinceExpo>=0 & DayOfExpo==0)) 
+# TimeSinceExposure coefficient
+TempModel1.7<-lmer(LnSwabBd~AccTemp + PerfTemp + TimeSinceExposure + AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc/FrogID),data=subset(IndBd2022,TimeSinceExposure>=0 & DayOfExpo==0)) 
 summary(TempModel1.7)
 
 ################
@@ -254,54 +253,54 @@ summary(TempModel1.7)
 
 ### IndBd2021 Time-series models
 # No need to include PerfInc or FrogID as random effect - only one frog per PerfInc
-TimeModel1.0<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo=="7" & DayOfExpo==0))
+TimeModel1.0<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure=="7" & DayOfExpo==0))
 summary(TimeModel1.0)
 Anova(TimeModel1.0,test="F")
 #View(Anova(TimeModel1.0,test="F"))
 
-TimeModel1.1<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo=="14" & DayOfExpo==0))
+TimeModel1.1<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure=="14" & DayOfExpo==0))
 summary(TimeModel1.1)
 Anova(TimeModel1.1,test="F")
 #View(Anova(TimeModel1.1,test="F"))
 
-TimeModel1.2<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo=="21" & DayOfExpo==0))
+TimeModel1.2<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure=="21" & DayOfExpo==0))
 summary(TimeModel1.2)
 Anova(TimeModel1.2,test="F")
 #View(Anova(TimeModel1.2,test="F"))
 
-TimeModel1.3<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo=="28" & DayOfExpo==0))
+TimeModel1.3<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure=="28" & DayOfExpo==0))
 summary(TimeModel1.3)
 Anova(TimeModel1.3,test="F")
 #View(Anova(TimeModel1.3,test="F"))
 
-TimeModel1.4<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,DaysSinceExpo=="35" & DayOfExpo==0))
+TimeModel1.4<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc),data=subset(IndBd2021,TimeSinceExposure=="35" & DayOfExpo==0))
 summary(TimeModel1.4)
 Anova(TimeModel1.4,test="F")
 #View(Anova(TimeModel1.4,test="F"))
 
 ### IndBd2022 Time-series models
 # No need to include FrogID as random effect - only one observation per frog
-TimeModel2.0<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,DaysSinceExpo=="7" & DayOfExpo==0))
+TimeModel2.0<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,TimeSinceExposure=="7" & DayOfExpo==0))
 summary(TimeModel2.0)
 Anova(TimeModel2.0,test="F")
 #View(Anova(TimeModel2.0,test="F"))
 
-TimeModel2.1<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,DaysSinceExpo=="14" & DayOfExpo==0))
+TimeModel2.1<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,TimeSinceExposure=="14" & DayOfExpo==0))
 summary(TimeModel2.1)
 Anova(TimeModel2.1,test="F")
 #View(Anova(TimeModel2.1,test="F"))
 
-TimeModel2.2<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,DaysSinceExpo=="21" & DayOfExpo==0))
+TimeModel2.2<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,TimeSinceExposure=="21" & DayOfExpo==0))
 summary(TimeModel2.2)
 Anova(TimeModel2.2,test="F")
 #View(Anova(TimeModel2.2,test="F"))
 
-TimeModel2.3<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,DaysSinceExpo=="28" & DayOfExpo==0))
+TimeModel2.3<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,TimeSinceExposure=="28" & DayOfExpo==0))
 summary(TimeModel2.3)
 Anova(TimeModel2.3,test="F")
 #View(Anova(TimeModel2.3,test="F"))
 
-TimeModel2.4<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,DaysSinceExpo=="35" & DayOfExpo==0))
+TimeModel2.4<-lmer(LnSwabBd~AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc),data=subset(IndBd2022,TimeSinceExposure=="35" & DayOfExpo==0))
 summary(TimeModel2.4)
 Anova(TimeModel2.4,test="F")
 #View(Anova(TimeModel2.4,test="F"))
@@ -312,8 +311,8 @@ Anova(TimeModel2.4,test="F")
 
 ### NOTES ###
 # TempModel1.1 & 1.2 are qualitatively similar.
-Day7Bd21<-subset(IndBd2021,DaysSinceExpo=="7" & DayOfExpo==0)
-Day7Bd22<-subset(IndBd2022,DaysSinceExpo=="7" & DayOfExpo==0)
+Day7Bd21<-subset(IndBd2021,TimeSinceExposure=="7" & DayOfExpo==0)
+Day7Bd22<-subset(IndBd2022,TimeSinceExposure=="7" & DayOfExpo==0)
 
 Day7Bd21Mn<-tapply(Day7Bd21$LnSwabBd, list(Day7Bd21$Day, Day7Bd21$PerfTemp, Day7Bd21$AccTemp), mean)
 Day7Bd21sdevs<-tapply(Day7Bd21$LnSwabBd, list(Day7Bd21$Day, Day7Bd21$PerfTemp, Day7Bd21$AccTemp), sd)
@@ -334,120 +333,120 @@ Day7Bd22SEs<-Day7Bd22sdevs/sqrt(Day7Bd22counts)
 #####################################
 
 ### DayOfExpo=-7 Full model
-Expo2021.6<-lmer(LnSwabBd~AccTemp*PerfTemp * DaysSinceExpo +(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== -7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.6<-lmer(LnSwabBd~AccTemp*PerfTemp * TimeSinceExposure +(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== -7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.6)
 Anova(Expo2021.6,test="F")
 #View(Anova(Expo2021.6,test="F"))
 
 # 2-way interactions coefficients
-Expo2021.6<-lmer(LnSwabBd~AccTemp*PerfTemp + AccTemp*DaysSinceExpo + PerfTemp * DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== -7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.6<-lmer(LnSwabBd~AccTemp*PerfTemp + AccTemp*TimeSinceExposure + PerfTemp * TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== -7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.6)
 
 # PerfTemp coefficient
-Expo2021.6<-lmer(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo + AccTemp*DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== -7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.6<-lmer(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure + AccTemp*TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== -7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.6)
 
-# DaysSinceExpo coefficient
-Expo2021.6<-lmer(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo + AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== -7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+# TimeSinceExposure coefficient
+Expo2021.6<-lmer(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure + AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== -7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.6)
 
 # AccTemp coefficient
-Expo2021.6<-lmer(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo + PerfTemp*DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== -7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.6<-lmer(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure + PerfTemp*TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== -7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.6)
 
 ### DayOfExpo=0 Full model
-Expo2021.7<-lmer(LnSwabBd~AccTemp*PerfTemp * DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 0 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.7<-lmer(LnSwabBd~AccTemp*PerfTemp * TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 0 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.7)
 Anova(Expo2021.7,test="F")
 #View(Anova(Expo2021.7,test="F"))
 
 # 2-way interactions coefficients
-Expo2021.7<-lmer(LnSwabBd~AccTemp*PerfTemp + AccTemp*DaysSinceExpo + PerfTemp * DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 0 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.7<-lmer(LnSwabBd~AccTemp*PerfTemp + AccTemp*TimeSinceExposure + PerfTemp * TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 0 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.7)
 
 # PerfTemp coefficient
-Expo2021.7<-lmer(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo + AccTemp*DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 0 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.7<-lmer(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure + AccTemp*TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 0 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.7)
 
-# DaysSinceExpo coefficient
-Expo2021.7<-lmer(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo + AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 0 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+# TimeSinceExposure coefficient
+Expo2021.7<-lmer(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure + AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 0 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.7)
 
 # AccTemp coefficient
-Expo2021.7<-lmer(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo + PerfTemp * DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 0 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.7<-lmer(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure + PerfTemp * TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 0 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.7)
 
 ### DayOfExpo=7 Full model
-Expo2021.8<-lmer(LnSwabBd~AccTemp*PerfTemp * DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.8<-lmer(LnSwabBd~AccTemp*PerfTemp * TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.8)
 Anova(Expo2021.8,test="F")
 #View(Anova(Expo2021.8,test="F"))
 
 # 2-way interactions coefficients
-Expo2021.8<-lmer(LnSwabBd~AccTemp*PerfTemp + AccTemp*DaysSinceExpo + PerfTemp * DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.8<-lmer(LnSwabBd~AccTemp*PerfTemp + AccTemp*TimeSinceExposure + PerfTemp * TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.8)
 
 # PerfTemp coefficient
-Expo2021.8<-lmer(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo + AccTemp*DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.8<-lmer(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure + AccTemp*TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.8)
 
-# DaysSinceExpo coefficient
-Expo2021.8<-lmer(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo + AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+# TimeSinceExposure coefficient
+Expo2021.8<-lmer(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure + AccTemp*PerfTemp+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.8)
 
 # AccTemp coefficient
-Expo2021.8<-lmer(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo + PerfTemp * DaysSinceExpo+(1|AccInc)+(1|PerfInc/FrogID),
-                 data=subset(IndBd2021,DayOfExpo== 7 & (DaysSinceExpo==7|DaysSinceExpo==14)  & (PerfTemp==10|PerfTemp==20)))
+Expo2021.8<-lmer(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure + PerfTemp * TimeSinceExposure+(1|AccInc)+(1|PerfInc/FrogID),
+                 data=subset(IndBd2021,DayOfExpo== 7 & (TimeSinceExposure==7|TimeSinceExposure==14)  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.8)
 # 
 # # Backward selection:
 # # remove 3-way interaction
-# Expo2021.8<-lm(LnSwabBd~AccTemp*PerfTemp + AccTemp*DaysSinceExpo + PerfTemp * DaysSinceExpo,
-#                data=subset(IndBd2021, DayOfExpo== 7 & DaysSinceExpo<=14 & (PerfTemp==10|PerfTemp==20)))
+# Expo2021.8<-lm(LnSwabBd~AccTemp*PerfTemp + AccTemp*TimeSinceExposure + PerfTemp * TimeSinceExposure,
+#                data=subset(IndBd2021, DayOfExpo== 7 & TimeSinceExposure<=14 & (PerfTemp==10|PerfTemp==20)))
 # Anova(Expo2021.8,test="F")
-# Expo2021.8<-lm(LnSwabBd~AccTemp*PerfTemp + PerfTemp * DaysSinceExpo,
-#                data=subset(IndBd2021, DayOfExpo== 7 & DaysSinceExpo<=14 & (PerfTemp==10|PerfTemp==20)))
+# Expo2021.8<-lm(LnSwabBd~AccTemp*PerfTemp + PerfTemp * TimeSinceExposure,
+#                data=subset(IndBd2021, DayOfExpo== 7 & TimeSinceExposure<=14 & (PerfTemp==10|PerfTemp==20)))
 # Anova(Expo2021.8,test="F")
-# Expo2021.8<-lm(LnSwabBd~AccTemp+PerfTemp+DaysSinceExpo+ PerfTemp * DaysSinceExpo,
-#                data=subset(IndBd2021, DayOfExpo== 7 & DaysSinceExpo<=14 & (PerfTemp==10|PerfTemp==20)))
+# Expo2021.8<-lm(LnSwabBd~AccTemp+PerfTemp+TimeSinceExposure+ PerfTemp * TimeSinceExposure,
+#                data=subset(IndBd2021, DayOfExpo== 7 & TimeSinceExposure<=14 & (PerfTemp==10|PerfTemp==20)))
 # Anova(Expo2021.8,test="F")
 
 # # IndBd2022
 # ### Day of Exposure 0
 # Expo2022.1<-lm(LnSwabBd~AccTemp*PerfTemp,
-#                data=subset(IndBd2022,DaysSinceExpo==7 & DayOfExpo==0))
+#                data=subset(IndBd2022,TimeSinceExposure==7 & DayOfExpo==0))
 # summary(Expo2022.1)
 # Anova(Expo2022.1,test="F")
 # #View(Anova(Expo2022.1,test="F"))
 # 
 # ### Day of Exposure -35
 # Expo2022.2<-lm(LnSwabBd~AccTemp*PerfTemp,
-#                data=subset(IndBd2022,DaysSinceExpo==42 & DayOfExpo==-35))
+#                data=subset(IndBd2022,TimeSinceExposure==42 & DayOfExpo==-35))
 # summary(Expo2022.2)
 # Anova(Expo2022.2,test="F")
 # #View(Anova(Expo2022.2,test="F"))
 #
 # Expo2022.1<-lm(LnSwabBd~AccTemp,
-#                   data=subset(IndBd2022, (DaysSinceExpo==6 & DayOfExpo==-35)))
+#                   data=subset(IndBd2022, (TimeSinceExposure==6 & DayOfExpo==-35)))
 # summary(Expo2022.1)
 # Anova(Expo2022.1,test="F")
 # 
 # Expo2022.2<-lm(LnSwabBd~PerfTemp,
-#                   data=subset(IndBd2022,(DaysSinceExpo==7 & DayOfExpo==0 & (PerfTemp==10|PerfTemp==20))))
+#                   data=subset(IndBd2022,(TimeSinceExposure==7 & DayOfExpo==0 & (PerfTemp==10|PerfTemp==20))))
 # summary(Expo2022.2)
 # Anova(Expo2022.2,test="F")
 
@@ -455,48 +454,48 @@ summary(Expo2021.8)
 ##### TABLE S2 #####
 ####################
 
-### DayOfExpo=-7; DaysSinceExpo==7
+### DayOfExpo=-7; TimeSinceExposure==7
 Expo2021.6<-lm(LnSwabBd~AccTemp,
-               data=subset(IndBd2021,DayOfExpo== -7 & DaysSinceExpo==7  & (PerfTemp==10|PerfTemp==20)))
+               data=subset(IndBd2021,DayOfExpo== -7 & TimeSinceExposure==7  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.6)
 Anova(Expo2021.6,test="F")
 #View(Anova(Expo2021.6,test="F"))
 ### PerfTemp not included because these frogs had not experienced the performance temperature yet.
 ### Model changed to lm from lmer because all observations are from independent FrogID, AccInc, and PerfInc with these subsets.
 
-### DayOfExpo=-7; DaysSinceExpo==14
+### DayOfExpo=-7; TimeSinceExposure==14
 Expo2021.6<-lm(LnSwabBd~AccTemp*PerfTemp,
-               data=subset(IndBd2021,DayOfExpo== -7 & DaysSinceExpo==14  & (PerfTemp==10|PerfTemp==20)))
+               data=subset(IndBd2021,DayOfExpo== -7 & TimeSinceExposure==14  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.6)
 Anova(Expo2021.6,test="F")
 #View(Anova(Expo2021.6,test="F"))
 ### Model changed to lm from lmer because all observations are from independent FrogID, AccInc, and PerfInc with these subsets.
 
-### DayOfExpo=0; DaysSinceExpo==7
+### DayOfExpo=0; TimeSinceExposure==7
 Expo2021.7<-lmer(LnSwabBd~AccTemp*PerfTemp + (1|AccInc),
-                 data=subset(IndBd2021,DayOfExpo== 0 & DaysSinceExpo==7  & (PerfTemp==10|PerfTemp==20)))
+                 data=subset(IndBd2021,DayOfExpo== 0 & TimeSinceExposure==7  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.7)
 Anova(Expo2021.7,test="F")
 #View(Anova(Expo2021.7,test="F"))
 
-### DayOfExpo=0; DaysSinceExpo==14
+### DayOfExpo=0; TimeSinceExposure==14
 Expo2021.7<-lmer(LnSwabBd~AccTemp*PerfTemp + (1|AccInc),
-                 data=subset(IndBd2021,DayOfExpo== 0 & DaysSinceExpo==14  & (PerfTemp==10|PerfTemp==20)))
+                 data=subset(IndBd2021,DayOfExpo== 0 & TimeSinceExposure==14  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.7)
 Anova(Expo2021.7,test="F")
 #View(Anova(Expo2021.7,test="F"))
 
-### DayOfExpo=7; DaysSinceExpo==7
+### DayOfExpo=7; TimeSinceExposure==7
 Expo2021.8<-lm(LnSwabBd~AccTemp*PerfTemp,
-               data=subset(IndBd2021,DayOfExpo== 7 & DaysSinceExpo==7  & (PerfTemp==10|PerfTemp==20)))
+               data=subset(IndBd2021,DayOfExpo== 7 & TimeSinceExposure==7  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.8)
 Anova(Expo2021.8,test="F")
 #View(Anova(Expo2021.8,test="F"))
 ### Model changed to lm from lmer because all observations are from independent FrogID, AccInc, and PerfInc with these subsets.
 
-### DayOfExpo=7; DaysSinceExpo==14
+### DayOfExpo=7; TimeSinceExposure==14
 Expo2021.8<-lm(LnSwabBd~AccTemp*PerfTemp,
-               data=subset(IndBd2021,DayOfExpo== 7 & DaysSinceExpo==14  & (PerfTemp==10|PerfTemp==20)))
+               data=subset(IndBd2021,DayOfExpo== 7 & TimeSinceExposure==14  & (PerfTemp==10|PerfTemp==20)))
 summary(Expo2021.8)
 Anova(Expo2021.8,test="F")
 #View(Anova(Expo2021.8,test="F"))
@@ -506,76 +505,76 @@ Anova(Expo2021.8,test="F")
 ### Time of Expo. plots ###
 ###########################
 
-Expo2021Mn<-tapply(IndBd2021$LnSwabBd, list(IndBd2021$DaysSinceExpo,IndBd2021$AccTemp,IndBd2021$PerfTemp, IndBd2021$DayOfExpo), mean)
-Expo2021SDevs<-tapply(IndBd2021$LnSwabBd, list(IndBd2021$DaysSinceExpo,IndBd2021$AccTemp,IndBd2021$PerfTemp, IndBd2021$DayOfExpo), sd)
-Expo2021Counts<-tapply(IndBd2021$LnSwabBd, list(IndBd2021$DaysSinceExpo,IndBd2021$AccTemp,IndBd2021$PerfTemp, IndBd2021$DayOfExpo), length)
+Expo2021Mn<-tapply(IndBd2021$LnSwabBd, list(IndBd2021$TimeSinceExposure,IndBd2021$AccTemp,IndBd2021$PerfTemp, IndBd2021$DayOfExpo), mean)
+Expo2021SDevs<-tapply(IndBd2021$LnSwabBd, list(IndBd2021$TimeSinceExposure,IndBd2021$AccTemp,IndBd2021$PerfTemp, IndBd2021$DayOfExpo), sd)
+Expo2021Counts<-tapply(IndBd2021$LnSwabBd, list(IndBd2021$TimeSinceExposure,IndBd2021$AccTemp,IndBd2021$PerfTemp, IndBd2021$DayOfExpo), length)
 Expo2021SEs<-Expo2021SDevs/sqrt(Expo2021Counts)
 
-Expo2022Mn<-tapply(IndBd2022$LnSwabBd, list(IndBd2022$DaysSinceExpo, IndBd2022$AccTemp, IndBd2022$PerfTemp, IndBd2022$DayOfExpo), mean)
-Expo2022SDevs<-tapply(IndBd2022$LnSwabBd, list(IndBd2022$DaysSinceExpo, IndBd2022$AccTemp, IndBd2022$PerfTemp, IndBd2022$DayOfExpo), sd)
-Expo2022Counts<-tapply(IndBd2022$LnSwabBd, list(IndBd2022$DaysSinceExpo, IndBd2022$AccTemp, IndBd2022$PerfTemp, IndBd2022$DayOfExpo), length)
+Expo2022Mn<-tapply(IndBd2022$LnSwabBd, list(IndBd2022$TimeSinceExposure, IndBd2022$AccTemp, IndBd2022$PerfTemp, IndBd2022$DayOfExpo), mean)
+Expo2022SDevs<-tapply(IndBd2022$LnSwabBd, list(IndBd2022$TimeSinceExposure, IndBd2022$AccTemp, IndBd2022$PerfTemp, IndBd2022$DayOfExpo), sd)
+Expo2022Counts<-tapply(IndBd2022$LnSwabBd, list(IndBd2022$TimeSinceExposure, IndBd2022$AccTemp, IndBd2022$PerfTemp, IndBd2022$DayOfExpo), length)
 Expo2022SEs<-Expo2022SDevs/sqrt(Expo2022Counts)
 
-#tapply is [DaysSinceExpo,AccTemp,PerfTemp,DayOfExpo]
+#tapply is [TimeSinceExposure,AccTemp,PerfTemp,DayOfExpo]
 
 ### 2021 PLOTS
 par(mfrow=c(3,2),mar=c(5,5,3,1))
-#2021, ExpoDay=0, DaysSinceExpo=7, AccTemp=10
+#2021, ExpoDay=0, TimeSinceExposure=7, AccTemp=10
 plot(x=c(10,15,20,25),y=Expo2021Mn[4,1,1:4,2],
-     main="IndBd2021 Day 0 Exposure (DaysSinceExpo=7,Acc=10)",col="white",ylim=c(0,7))
+     main="IndBd2021 Day 0 Exposure (TimeSinceExposure=7,Acc=10)",col="white",ylim=c(0,7))
 errbar(x=c(10,15,20,25),y=Expo2021Mn[4,1,1:4,2],yplus=Expo2021Mn[4,1,1:4,2]+Expo2021SEs[4,1,1:4,2],yminus=Expo2021Mn[4,1,1:4,2]-Expo2021SEs[4,1,1:4,2],
        col=col[1],errbar.col=col[1],pch=0,cex=1.5,cex.lab=1.5,cex.main=1.5,
        ylab="Ln(Bd load + 1)",xlab=expression(paste("Performance temperature (",degree,"C)")),main="Day 0 Exposure",ylim=c(0,7),add=TRUE)
 lines(x=c(10,15,20,25),Expo2021Mn[4,1,1:4,2],col=col[1],lwd=1.5,lty=1)
 mtext(LETTERS[1], side=3, adj=.05, line=-1.5, cex=1)
-#2021, ExpoDay=0, DaysSinceExpo=7, AccTemp=20
+#2021, ExpoDay=0, TimeSinceExposure=7, AccTemp=20
 errbar(x=c(10,15,20,25),y=Expo2021Mn[4,2,1:4,2],yplus=Expo2021Mn[4,2,1:4,2]+Expo2021SEs[4,2,1:4,2],yminus=Expo2021Mn[4,2,1:4,2]-Expo2021SEs[4,2,1:4,2],
        col=col[3],errbar.col=col[3],pch=1,cex=1.5,cex.lab=1.5,cex.main=1.5,
        ylab="Ln(Bd load + 1)",xlab=expression(paste("Performance temperature (",degree,"C)")),add=TRUE)
 lines(x=c(10,15,20,25),Expo2021Mn[4,2,1:4,2],col=col[3],lwd=1.5,lty=3)
 
-#2022, ExpoDay=0, DaysSinceExpo=7, AccTemp=10
+#2022, ExpoDay=0, TimeSinceExposure=7, AccTemp=10
 plot(x=c(10,15,20,25),y=Expo2021Mn[4,1,1:4,1],
-     main="IndBd2022 Day 0 Exposure (DaysSinceExpo=7,Acc=10)",col="white",ylim=c(0,7))
+     main="IndBd2022 Day 0 Exposure (TimeSinceExposure=7,Acc=10)",col="white",ylim=c(0,7))
 errbar(x=c(10,15,20,25),y=Expo2022Mn[4,1,1:4,1],yplus=Expo2022Mn[4,1,1:4,1]+Expo2022SEs[4,1,1:4,1],yminus=Expo2022Mn[4,1,1:4,1]-Expo2022SEs[4,1,1:4,1],
        col=col[1],errbar.col=col[1],pch=0,cex=1.5,cex.lab=1.5,cex.main=1.5,
        ylab="Ln(Bd load + 1)",xlab=expression(paste("Performance temperature (",degree,"C)")),main="Day 0 Exposure",ylim=c(0,7),add=TRUE)
 lines(x=c(10,15,20,25),Expo2022Mn[4,1,1:4,1],col=col[1],lwd=1.5,lty=1)
 mtext(LETTERS[4], side=3, adj=.05, line=-1.5, cex=1)
-#2022, ExpoDay=0, DaysSinceExpo=7, AccTemp=15
+#2022, ExpoDay=0, TimeSinceExposure=7, AccTemp=15
 errbar(x=c(10,15,20,25),y=Expo2022Mn[4,2,1:4,1],yplus=Expo2022Mn[4,2,1:4,1]+Expo2022SEs[4,2,1:4,1],yminus=Expo2022Mn[4,2,1:4,1]-Expo2022SEs[4,2,1:4,1],
        col=col[2],errbar.col=col[2],pch=2,cex=1.5,cex.lab=1.5,cex.main=1.5,
        ylab="Ln(Bd load + 1)",xlab=expression(paste("Performance temperature (",degree,"C)")),add=TRUE)
 lines(x=c(10,15,20,25),Expo2022Mn[4,2,1:4,1],col=col[2],lwd=1.5,lty=2)
-#2022, ExpoDay=0, DaysSinceExpo=7, AccTemp=20
+#2022, ExpoDay=0, TimeSinceExposure=7, AccTemp=20
 errbar(x=c(10,15,20,25),y=Expo2022Mn[4,3,1:4,1],yplus=Expo2022Mn[4,3,1:4,1]+Expo2022SEs[4,3,1:4,1],yminus=Expo2022Mn[4,3,1:4,1]-Expo2022SEs[4,3,1:4,1],
        col=col[3],errbar.col=col[3],pch=1,cex=1.5,cex.lab=1.5,cex.main=1.5,
        ylab="Ln(Bd load + 1)",xlab=expression(paste("Performance temperature (",degree,"C)")),add=TRUE)
 lines(x=c(10,15,20,25),Expo2022Mn[4,3,1:4,1],col=col[3],lwd=1.5,lty=3)
 
-#2021, ExpoDay=-7, DaysSinceExpo=7, AccTemp=10
+#2021, ExpoDay=-7, TimeSinceExposure=7, AccTemp=10
 plot(x=c(10,15,20,25),y=Expo2021Mn[4,1,1:4,1],
-     main="IndBd2021 Day -7 Exposure (DaysSinceExpo=7,Acc=10)",col="white",ylim=c(0,7))
+     main="IndBd2021 Day -7 Exposure (TimeSinceExposure=7,Acc=10)",col="white",ylim=c(0,7))
 errbar(x=c(10,15,20,25),y=Expo2021Mn[4,1,1:4,1],yplus=Expo2021Mn[4,1,1:4,1]+Expo2021SEs[4,1,1:4,1],yminus=Expo2021Mn[4,1,1:4,1]-Expo2021SEs[4,1,1:4,1],
        col=col[1],errbar.col=col[1],pch=0,cex=1.5,cex.lab=1.5,cex.main=1.5,
        ylab="Ln(Bd load + 1)",xlab=expression(paste("Performance temperature (",degree,"C)")),main="Day -7 Exposure",ylim=c(0,7),add=TRUE)
 lines(x=c(10,20),y=c(Expo2021Mn[4,1,1,1],Expo2021Mn[4,1,3,1]),col=col[1],lwd=1.5,lty=1)
 mtext(LETTERS[2], side=3, adj=.05, line=-1.5, cex=1)
-#2021, ExpoDay=-7, DaysSinceExpo=7, AccTemp=20
+#2021, ExpoDay=-7, TimeSinceExposure=7, AccTemp=20
 errbar(x=c(10,15,20,25),y=Expo2021Mn[4,2,1:4,1],yplus=Expo2021Mn[4,2,1:4,1]+Expo2021SEs[4,2,1:4,1],yminus=Expo2021Mn[4,2,1:4,1]-Expo2021SEs[4,2,1:4,1],
        col=col[3],errbar.col=col[3],pch=1,cex=1.5,cex.lab=1.5,cex.main=1.5,
        ylab="Ln(Bd load + 1)",xlab=expression(paste("Performance temperature (",degree,"C)")),add=TRUE)
 lines(x=c(10,20),y=c(Expo2021Mn[4,2,1,1],Expo2021Mn[4,2,3,1]),col=col[3],lwd=1.5,lty=3)
 
-#2021, ExpoDay=7, DaysSinceExpo=7, AccTemp=10
+#2021, ExpoDay=7, TimeSinceExposure=7, AccTemp=10
 plot(x=c(10,15,20,25),y=Expo2021Mn[4,1,1:4,3],
-     main="IndBd2021 Day +7 Exposure (DaysSinceExpo=7,Acc=10)",col="white",ylim=c(0,7))
+     main="IndBd2021 Day +7 Exposure (TimeSinceExposure=7,Acc=10)",col="white",ylim=c(0,7))
 errbar(x=c(10,15,20,25),y=Expo2021Mn[4,1,1:4,3],yplus=Expo2021Mn[4,1,1:4,3]+Expo2021SEs[4,1,1:4,3],yminus=Expo2021Mn[4,1,1:4,3]-Expo2021SEs[4,1,1:4,3],
        col=col[1],errbar.col=col[1],pch=0,cex=1.5,cex.lab=1.5,cex.main=1.5,
        ylab="Ln(Bd load + 1)",xlab=expression(paste("Performance temperature (",degree,"C)")),main="Day +7 Exposure",ylim=c(0,7),add=TRUE)
 lines(x=c(10,20),y=c(Expo2021Mn[4,1,1,3],Expo2021Mn[4,1,3,3]),col=col[1],lwd=1.5,lty=3)
 mtext(LETTERS[3], side=3, adj=.05, line=-1.5, cex=1)
-#2021, ExpoDay=7, DaysSinceExpo=7, AccTemp=20
+#2021, ExpoDay=7, TimeSinceExposure=7, AccTemp=20
 errbar(x=c(10,15,20,25),y=Expo2021Mn[4,2,1:4,3],yplus=Expo2021Mn[4,2,1:4,3]+Expo2021SEs[4,2,1:4,3],yminus=Expo2021Mn[4,2,1:4,3]-Expo2021SEs[4,2,1:4,3],
        col=col[3],errbar.col=col[3],pch=1,cex=1.5,cex.lab=1.5,cex.main=1.5,
        ylab="Ln(Bd load + 1)",xlab=expression(paste("Performance temperature (",degree,"C)")),add=TRUE)
