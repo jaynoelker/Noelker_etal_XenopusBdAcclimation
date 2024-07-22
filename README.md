@@ -54,6 +54,7 @@ CSV of Bd infection data collected from skin swabs for Experiments 1 & 2 collect
 | **LnFilterBd** | 	log(Bd zoospore equivelents) after qPCR assay from frog filters |
 | **TotalTime.min** | the total length of time in minutes that a frog was "soaked" in clean water during the zoospore production experiment |
 | **TotalVolume.mL** | the total volume of water in mL filtered after a frog "soaked" |
+| **BdStatus** | A frog’s infection status as either infected (1) or uninfectied (0) |
 | **Notes** | any notes collected about a given sample |
 
 ===========================================================================
@@ -66,6 +67,10 @@ CSV of mass data for all frogs for Experiments 1 & 2.
 | --- | --- |
 | **Experiment** | year the experiment was conducted |
 | **FrogCode** | unique identifier for each frog (**FrogID_Block**) |
-| **Mass** | mass of each frog at the beginning of each experiment in grams |
+| **InitialMass** | mass of each frog in grams for both experiments at the beginning of each experiment |
+| **DayOfInfectionMass** | mass of each frog in grams for both experiments on the day they were exposed to Bd |
+| **DeathMass** | mass of each frog in grams for both experiments on the day they died |
+| **DeathDate** | date that each frog died |
+| **CauseOfDeath** | the cause of death for each frog in both experiments as either **EndOfExperiment.Euthanized** if a frog was euthanized at the end of the experiment or **EndPoint.Euthanized** if a frog was euthanized during the experiment due to sever Bd infection |
 
 ===========================================================================
