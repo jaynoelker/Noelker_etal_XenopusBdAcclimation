@@ -1555,7 +1555,7 @@ Anova(model1,test="F")
 #########################
 ### Binomial Analysis ###
 #########################
-#
+
 library(glmmTMB)
 
 ####################
@@ -1601,9 +1601,9 @@ BinomModel4<-glmmTMB(BdStatus~TimeSinceExposure+AccTemp*PerfTemp + (1|PerfInc/Fr
 summary(BinomModel4)
 Anova(BinomModel4)
 
-##########################################
-### Major convergence erros - No table ###
-##########################################
+###########################################
+### Major convergence errors - No table ###
+###########################################
 
 ### DayOfExpo=-7 Full model
 Expo2021.6<-lmer(LnSwabBd~AccTemp*PerfTemp * TimeSinceExposure +(1|AccInc)+(1|PerfInc/FrogID),
