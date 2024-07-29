@@ -32,7 +32,7 @@ CSV of temperature data from Experiment 1 & 2 comparing target temperatures with
 
 **File 2:** _Experiment1&2CombinedBdInfectionData.csv_
 
-CSV of Bd infection data collected from skin swabs for Experiments 1 & 2 collected weekly and filters for Experiment 2 collected on day 7 and 35. Each row is a data collection day for each frog as well as the conditions the frog was experiencing.
+CSV of Bd infection data collected from skin swabs for Experiments 1 & 2 collected weekly and filters for Experiment 2 collected on day 7 and 35. Each row is a data collection day for each frog as well as the conditions the frog was experiencing. Our data includes cells with values of "NA" (not applicable) meaning no data was collected for that variable. However, the cells are kept in the file which is essential for accurate analysis of the dataset using our R script.
 
 | Variable name | Description |
 | --- | --- |
