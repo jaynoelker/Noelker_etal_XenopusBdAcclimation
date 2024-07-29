@@ -1352,7 +1352,7 @@ AccTemp35<-subset(zooShedData$AccTemp, Day==35)
 zooData2<-tapply(LnFilterBdrate7, list(PerfTemp7, AccTemp7), mean, na.rm=TRUE)
 zooData2sd<-tapply(LnFilterBdrate7, list(PerfTemp7, AccTemp7), sd, na.rm=TRUE)
 zooData2len<-tapply(LnFilterBdrate7, list(PerfTemp7, AccTemp7), length)
-zooData2se<-zooData2sd/sqrt(zooData2len)http://127.0.0.1:22749/graphics/cde264fc-782d-4184-97e0-e69626063c1c.png
+zooData2se<-zooData2sd/sqrt(zooData2len)
 
 ################
 ### Figure 5 ###
