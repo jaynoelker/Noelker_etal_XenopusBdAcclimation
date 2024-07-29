@@ -13,6 +13,8 @@ Hunter M. Craig
 
 Thomas R. Raffel (Principle investigator)
 
+**CITATION:** Noelker, J. E., Abreu Ruozzi, V., Spengler, K. D.*, Craig, H. M., & Raffel, T. R. (_in press_). Dynamic effects of thermal acclimation on chytridiomycosis infection intensity and transmission potential in Xenopus laevis. _Royal Society Open Science_.
+
 ===========================================================================
 
 **File 1:** _Experiment1&2TemperatureData.csv_
