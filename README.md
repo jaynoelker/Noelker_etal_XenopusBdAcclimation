@@ -51,7 +51,7 @@ CSV of Bd infection data collected from skin swabs for Experiments 1 & 2 collect
 | **AccTemp** | a frog's assigned acclimation temperature |
 | **PerfTemp** | a frog's assigned performance temperature |
 | **AccInc** | a frog's assigned acclimation incubator |
-| **PerfInc** | a frog's assigned performance temperature |
+| **PerfInc** | a frog's assigned performance incubator |
 | **LnSwabBd** | 	log(Bd zoospore equivelents) after qPCR assay from frog swabs |
 | **LnFilterBd** | 	log(Bd zoospore equivelents) after qPCR assay from frog filters |
 | **TotalTime.min** | the total length of time in minutes that a frog was "soaked" in clean water during the zoospore production experiment |
